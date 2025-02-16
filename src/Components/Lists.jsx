@@ -1,11 +1,21 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-function Lists({del , add}) {
-  
+function Lists({ del, add, todos }) {
   return (
     <div className="ListGroup">
-      <ListItem title='test 1' delHandler={del} addHandler={add} />
+      {todos &&
+        todos.map((todo, index) => (
+          <ListItem
+            key={index}
+            id={todo.id}
+            title={todo.title}
+            delHandler={del}
+            addHandler={add}
+            add = {todo.add}
+            
+          />
+        ))}
     </div>
   );
 }
