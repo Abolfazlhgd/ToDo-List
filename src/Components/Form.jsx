@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({ todo, change, submit }) {
+function Form({ todo, change, submit, error }) {
   return (
     <>
       <form onSubmit={submit}>
@@ -13,6 +13,13 @@ function Form({ todo, change, submit }) {
               type="text"
               placeholder="Enter your task"
             />
+            {error && (
+              <div className="flex p-1">
+                <span className="text-red-900 font-semibold text-xs">
+                  {error}
+                </span>
+              </div>
+            )}
           </div>
           <div>
             <button

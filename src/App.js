@@ -7,9 +7,16 @@ import Form from "./Components/Form";
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [error, setError] = useState(null);
   const submitHandler = (e) => {
     e.preventDefault();
+    if (todo.length < 5) {
+      setError("Please enter a valid task");
+      return false;
+    }
     setTodos([...todos, { title: todo, add: false }]);
+    setError(null);
+    setTodo("");
   };
   const delHandler = (todoId) => {
     if (window.confirm("Are you sure?")) {
@@ -37,6 +44,7 @@ function App() {
           todo={todo}
           change={(e) => setTodo(e.target.value)}
           submit={submitHandler}
+          error={error}
         />
         <Lists del={delHandler} add={addHandler} todos={todos} />
       </Layout>
